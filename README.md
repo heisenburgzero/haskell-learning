@@ -1,0 +1,4 @@
+haskell-learning
+================
+
+Learning Excercises
