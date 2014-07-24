@@ -67,4 +67,27 @@ mapList :: (t->t) -> List t -> List t
 mapList _ E = E
 mapList p (C x xs) = C (p x) (mapList p xs)
 
-    
+doStuff1 :: [Int] -> Int
+doStuff1 []  = 0
+doStuff1 [_] = 0
+doStuff1 xs  = head xs + (head (tail xs)) 
+
+doStuff2 :: [Int] -> Int
+doStuff2 []        = 0
+doStuff2 [_]       = 0
+doStuff2 (x1:x2:_) = x1 + x2
+
+data NonEmptyList a = NEL a [a]
+   deriving Show
+nelToList :: NonEmptyList a -> [a]
+nelToList (NEL x xs) = x:xs
+
+listToNel :: [a] -> Maybe (NonEmptyList a)
+listToNel []     = Nothing
+listToNel (x:xs) = Just $ NEL x xs
+
+headNEL :: NonEmptyList a -> a
+headNEL (NEL a _) = a
+
+tailNEL :: NonEmptyList a -> [a]
+tailNEL (NEL _ as) = as
